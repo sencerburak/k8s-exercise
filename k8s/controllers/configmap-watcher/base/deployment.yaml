@@ -16,7 +16,7 @@ spec:
       serviceAccountName: configmap-watcher-sa
       containers:
         - name: watcher
-          image: configmap-watcher:latest
+          image: ghcr.io/sencerburak/k8s-exercise/configmap-watcher:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: NAMESPACE
