@@ -31,7 +31,7 @@ jobs:
         with:
           context: apps/hello-app
           push: true
-          tags: ghcr.io/${{ github.repository }}/hello-app:latest
+          tags: ghcr.io/sencerburak/k8s-exercise/hello-app:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -40,6 +40,6 @@ jobs:
         with:
           context: apps/configmap-watcher
           push: true
-          tags: ghcr.io/${{ github.repository }}/configmap-watcher:latest
+          tags: ghcr.io/sencerburak/k8s-exercise/configmap-watcher:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max

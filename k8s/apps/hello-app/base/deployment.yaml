@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hello-app
-          image: hello_app:latest
+          image: ghcr.io/sencerburak/k8s-exercise/hello-app:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
