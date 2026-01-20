@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,11 +7,11 @@ spec:
   template:
     spec:
       containers:
-      - name: watcher
-        env:
-        - name: NAMESPACE
-          value: "hello"
-        - name: CONFIGMAP_NAME
-          value: "hello-app-config-prod"
-        - name: LABEL_SELECTOR
-          value: "app=helloworld,env=prod" 
+        - name: watcher
+          env:
+            - name: NAMESPACE
+              value: "hello"
+            - name: CONFIGMAP_NAME
+              value: "hello-app-config-prod"
+            - name: LABEL_SELECTOR
+              value: "app=helloworld,env=prod"

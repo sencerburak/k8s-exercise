@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,13 +15,13 @@ spec:
     spec:
       serviceAccountName: configmap-watcher-sa
       containers:
-      - name: watcher
-        image: configmap-watcher:latest
-        imagePullPolicy: IfNotPresent
-        env:
-        - name: NAMESPACE
-          value: "hello"
-        - name: CONFIGMAP_NAME
-          value: "hello-app-config"
-        - name: LABEL_SELECTOR
-          value: "app=helloworld"
+        - name: watcher
+          image: configmap-watcher:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: NAMESPACE
+              value: "hello"
+            - name: CONFIGMAP_NAME
+              value: "hello-app-config"
+            - name: LABEL_SELECTOR
+              value: "app=helloworld"

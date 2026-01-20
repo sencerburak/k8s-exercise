@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,14 +14,14 @@ spec:
         app: helloworld
     spec:
       containers:
-      - name: hello-app
-        image: hello_app:latest
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 8080
-        env:
-        - name: MESSAGE
-          valueFrom:
-            configMapKeyRef:
-              name: hello-app-config
-              key: MESSAGE
+        - name: hello-app
+          image: hello_app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: hello-app-config
+                  key: MESSAGE
