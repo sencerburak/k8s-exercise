@@ -148,3 +148,14 @@ All resources automatically receive:
 - Push images to registry, update image refs in [k8s/apps/hello-app/base/deployment.yaml](k8s/apps/hello-app/base/deployment.yaml) and [k8s/controllers/configmap-watcher/base/deployment.yaml](k8s/controllers/configmap-watcher/base/deployment.yaml)
 - Configure real DNS records
 - Verify Istio gateway selector matches your cluster's ingress gateway labels
+
+## Contributing
+
+Contributions welcome! Please open issues or pull requests for improvements or bug fixes.
+
+**Note:** Remember to run `pre-commit` hooks before committing changes. You can install them using:
+
+```bash
+pip install pre-commit
+pre-commit install
+```
