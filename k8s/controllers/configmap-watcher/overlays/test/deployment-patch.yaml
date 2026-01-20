@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configmap-watcher
+spec:
+  template:
+    spec:
+      containers:
+      - name: watcher
+        env:
+        - name: NAMESPACE
+          value: "hello"
+        - name: CONFIGMAP_NAME
+          value: "hello-app-config-test"
+        - name: LABEL_SELECTOR
+          value: "app=helloworld,env=test" 

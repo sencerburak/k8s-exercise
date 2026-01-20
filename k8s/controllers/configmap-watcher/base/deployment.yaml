@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configmap-watcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configmap-watcher
+  template:
+    metadata:
+      labels:
+        app: configmap-watcher
+    spec:
+      serviceAccountName: configmap-watcher-sa
+      containers:
+      - name: watcher
+        image: configmap-watcher:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: NAMESPACE
+          value: "hello"
+        - name: CONFIGMAP_NAME
+          value: "hello-app-config"
+        - name: LABEL_SELECTOR
+          value: "app=helloworld"
