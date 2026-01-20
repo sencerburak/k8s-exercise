@@ -16,7 +16,7 @@ spec:
       serviceAccountName: configmap-watcher-sa
       containers:
         - name: watcher
-          image: ghcr.io/sencerburak/k8s-exercise/configmap-watcher:v1.0.2
+          image: ghcr.io/sencerburak/k8s-exercise/configmap-watcher:v1.0.3
           imagePullPolicy: IfNotPresent
           env:
             - name: NAMESPACE
@@ -25,3 +25,10 @@ spec:
               value: "hello-app-config"
             - name: LABEL_SELECTOR
               value: "app=helloworld"
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"

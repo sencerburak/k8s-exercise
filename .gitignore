@@ -1,0 +1,30 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+.vscode/
+.idea/
+*.swp
+
+# macOS
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Kubernetes config files
+*.kubeconfig
+.kube/
+
+# Terraform files
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Docker files
+docker-compose.override.yml
+.env
