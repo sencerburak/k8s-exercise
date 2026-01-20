@@ -32,6 +32,7 @@ jobs:
           context: apps/hello-app
           push: true
           tags: ghcr.io/sencerburak/k8s-exercise/hello-app:latest
+          platforms: linux/amd64,linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -41,5 +42,6 @@ jobs:
           context: apps/configmap-watcher
           push: true
           tags: ghcr.io/sencerburak/k8s-exercise/configmap-watcher:latest
+          platforms: linux/amd64,linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
