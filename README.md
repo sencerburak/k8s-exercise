@@ -43,9 +43,9 @@ minikube tunnel  # In separate terminal
 ### 3. Configure DNS
 
 ```bash
-MINIKUBE_IP=$(minikube ip)
-echo "$MINIKUBE_IP test.hello.local" | sudo tee -a /etc/hosts
-echo "$MINIKUBE_IP prod.hello.local" | sudo tee -a /etc/hosts
+INGRESS_IP=$(kubectl -n istio-system get svc istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+echo "$INGRESS_IP test.hello.local" | sudo tee -a /etc/hosts
+echo "$INGRESS_IP prod.hello.local" | sudo tee -a /etc/hosts
 ```
 
 ### 4. Test
@@ -88,11 +88,16 @@ kubectl logs -n hello -l app=configmap-watcher,env=test -f
 kubectl patch configmap hello-app-config-test -n hello \
   -p '{"data":{"MESSAGE":"Updated at '$(date +%T)'"}}'
 
+# Or just edit the ConfigMap directly then apply
+kubectl apply -k k8s/apps/hello-app/overlays/test
+
 # Verify restart triggered
 kubectl rollout status deployment/hello-app-deployment-test -n hello
 
 # Test new message
 curl http://test.hello.local/
+
+
 ```
 
 ## Key Files
@@ -120,6 +125,10 @@ kubectl logs -n hello -l app=helloworld,env=test
 # Delete environment
 kubectl delete -k k8s/apps/hello-app/overlays/test
 kubectl delete -k k8s/controllers/configmap-watcher/overlays/test
+
+# Delete namespace
+kubectl delete namespace hello
+
 ```
 
 ## Labels
