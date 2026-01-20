@@ -1,15 +1,16 @@
+---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: hello-app-vs
 spec:
   hosts:
-  - prod.hello.local
+    - prod.hello.local
   gateways:
-  - hello-app-gateway-prod
+    - hello-app-gateway-prod
   http:
-  - route:
-    - destination:
-        host: hello-app-svc-prod
-        port:
-          number: 80
+    - route:
+        - destination:
+            host: hello-app-svc-prod
+            port:
+              number: 80
