@@ -18,11 +18,30 @@ Python Flask app deployed to test and prod environments on the same Kubernetes c
 # Start Minikube and install Istio
 minikube start --driver=docker
 istioctl install --set profile=demo -y
+```
 
+#### Option A: Using published images
+
+No need to build images locally. Skip to [2. Deploy](#2-deploy).
+
+#### Option B: Build images locally
+```bash
 # Build images
 eval $(minikube docker-env)
 docker build -t hello_app:latest apps/hello-app/
 docker build -t configmap-watcher:latest apps/configmap-watcher/
+```
+
+If building locally, ensure the image references in the deployment manifests point to the correct local images:
+- [k8s/apps/hello-app/base/deployment.yaml](k8s/apps/hello-app/base/deployment.yaml)
+
+```yaml
+          image: hello_app:latest
+```
+
+- [k8s/controllers/configmap-watcher/base/deployment.yaml](k8s/controllers/configmap-watcher/base/deployment.yaml)
+```yaml
+          image: configmap-watcher:latest
 ```
 
 ### 2. Deploy
