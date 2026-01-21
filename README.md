@@ -47,6 +47,9 @@ If building locally, ensure the image references in the deployment manifests poi
 ### 2. Deploy
 
 ```bash
+# Deploy istio gateway
+kubectl apply -k k8s/apps/hello-app/gateway/
+
 # Deploy both environments
 kubectl apply -k k8s/apps/hello-app/overlays/test
 kubectl apply -k k8s/apps/hello-app/overlays/prod

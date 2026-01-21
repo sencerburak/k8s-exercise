@@ -7,7 +7,7 @@ spec:
   hosts:
     - test.hello.local
   gateways:
-    - hello-app-gateway-test
+    - hello-app-gateway
   http:
     - route:
         - destination:

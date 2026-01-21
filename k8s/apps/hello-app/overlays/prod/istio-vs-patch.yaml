@@ -7,7 +7,7 @@ spec:
   hosts:
     - prod.hello.local
   gateways:
-    - hello-app-gateway-prod
+    - hello-app-gateway
   http:
     - route:
         - destination:
