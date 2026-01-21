@@ -61,6 +61,8 @@ def main():
         LABEL_SELECTOR,
     )
 
+    last_message = None
+
     while True:
         try:
             stream = w.stream(
@@ -74,9 +76,22 @@ def main():
                 if name != CM_NAME:
                     continue
 
-                logging.info("ConfigMap event %s for %s", etype, name)
-                if etype in ("ADDED", "MODIFIED"):
-                    restart_deployments(core, apps)
+                current_message = obj.data.get("MESSAGE", "")
+
+                if etype == "ADDED":
+                    last_message = current_message
+                    logging.info("Initial ConfigMap loaded: %s", current_message)
+                elif etype == "MODIFIED":
+                    if current_message != last_message:
+                        logging.info(
+                            "MESSAGE changed: %s -> %s",
+                            last_message,
+                            current_message,
+                        )
+                        restart_deployments(core, apps)
+                        last_message = current_message
+                    else:
+                        logging.debug("ConfigMap modified but MESSAGE unchanged")
         except Exception:
             logging.exception("Watch failed, retrying in %s seconds", RETRY_DELAY)
             time.sleep(RETRY_DELAY)
